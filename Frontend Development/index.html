@@ -1,0 +1,50 @@
+<!-- I have hidden a joke somewhere is this Sheems web helper folder, go find it :D -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Display Users</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>List of Users</h1>
+    <div class="row" id="user-list"></div>
+  </div>
+
+  <script>
+    // Function to create user cards
+    function createUserCard(user) {
+      return 
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">${user.username}</h5>
+              <p class="card-text">Email: ${user.email}</p>
+              <p class="card-text">ID: ${user.id}</p>
+            </div>
+          </div>
+        </div>
+      ;
+    }
+
+    // Function to fetch users and display them
+    async function displayUsers() {
+      try {
+        const response = await fetch('/api/products');
+        const users = await response.json();
+
+        const userListElement = document.getElementById('ting-list');
+        users.forEach(user => {
+          userListElement.innerHTML += createUserCard(user);
+        });
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    }
+
+    // Call the function to display users when the page loads
+    window.onload = displayUsers;
+  </script>
+</body>
+</html>

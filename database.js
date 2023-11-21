@@ -1,8 +1,13 @@
-const { Sequelize } = require('sequelize');
+const sqlite3 = require('sqlite3').verbose();
 
-const sequelize = new Sequelize('test-db', 'user', 'pass', {
-  dialect: 'sqlite',
-  host: './dev.sqlite'
-})
+// Connect to the SQLite database
+const db = new sqlite3.Database('./dev.sqlite', (err) => {
+  if (err) {
+    console.error(err.message);
+  } else {
+    console.log('Connected to the SQLite database.');
+  }
+});
 
-module.exports = sequelize;
+// Export the connected database
+module.exports = db;
