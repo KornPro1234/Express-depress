@@ -23,7 +23,7 @@ const db = new sqlite3.Database(":memory:", (err) => {
       } else {
         console.log('Users table created successfully.');
 
-        // Insert 25 users into the users table
+        // Insert 100 users into the users table
         for (let i = 1; i <= 100; i++) {
           const username = `user${i}`;
           const email = `user${i}@mail.com`;
@@ -115,7 +115,7 @@ app.post('/users', async (req, res) => {
 })
 
 app.get("/homepage", async (req, res) => {
-  res.sendFile(path.join(__dirname, "Frontend Development", "homepage.html"));
+  res.sendFile(path.join(__dirname, "Frontend Development", "not homepage.html"));
 })
 
 app.get('/users', async (req, res) => {
